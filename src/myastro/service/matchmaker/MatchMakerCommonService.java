@@ -55,14 +55,5 @@ public class MatchMakerCommonService {
 		}
 		return distance;
 	}
-	
-	public static void main(String[] args) {
-		Rashi boyRashi = Rashi.MESA;
-		Rashi girlRashi = Rashi.MITHUNA;
-		System.out.println("Boy To Girl:"+MatchMakerCommonService.getBoyToGirlRashiDistance(boyRashi, girlRashi));
-		System.out.println("Girl To Boy :"+MatchMakerCommonService.getGirlToBoyRashiDistance(boyRashi, girlRashi));
-		
-		
-	}
 
 }

@@ -12,14 +12,13 @@ public class AstroCommonService {
 	private final LinkedHashMap<Rashi, ArrayList<Nakshatra>> starsInRashiCache;
 	private final LinkedHashMap<String, String> starsInRashiWithPadamCache;
 
-	public static AstroCommonService getPoruthamUtil() {
+	public static AstroCommonService getAstroCommonService() {
 		return ASTRO_COMMON_SERVICE;
 	}
 
 	private AstroCommonService() {
 		starsInRashiCache = getStarsInRashi();
 		starsInRashiWithPadamCache = getStarsInRashiWithPadam();
-
 	}
 
 	public LinkedHashMap<Rashi, ArrayList<Nakshatra>> getStarsInRashiCache() {
@@ -28,6 +27,18 @@ public class AstroCommonService {
 
 	public LinkedHashMap<String, String> getStarsInRashiWithPadamCache() {
 		return starsInRashiWithPadamCache;
+	}
+	
+	public Rashi getRashi(Nakshatra nakshatra, int padam) {
+		Rashi rashi = null;
+		String rashiName = getStarsInRashiWithPadamCache().get(nakshatra+"_"+padam);
+		for(Rashi rashiItr :Rashi.values()) {
+			if(rashiItr.name().equals(rashiName)) {
+				rashi = rashiItr;
+				break;
+			}
+		}
+		return rashi;
 	}
 
 	private LinkedHashMap<Rashi, ArrayList<Nakshatra>> getStarsInRashi() {
