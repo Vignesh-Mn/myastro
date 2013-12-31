@@ -2,21 +2,21 @@ package myastro.constants.matchmaker;
 
 public enum MatchResult {
 
-	UTTAMA(1),
+	UTTAMA(1.0),
 
-	MADHYAMA(0),
+	MADHYAMA(0.5),
 
-	ADHAMA(-1),
+	ADHAMA(0.0),
 
-	DEPENDS(2);
+	DEPENDS(0.0);
 
-	private MatchResult(int value) {
+	private MatchResult(double value) {
 		this.value = value;
 	}
 
-	private int value;
+	private double value;
 
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 

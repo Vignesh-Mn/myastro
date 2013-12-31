@@ -26,19 +26,22 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 	@Override
 	public MatchResult checkKoota(Rashi boyRashi, Rashi girlRashi) {
 		MatchResult matchResult = MatchResult.ADHAMA;
-		GrahaRelation boyToGirlGrahaRelation = rashiAthipatiDetailsCache.get(boyRashi.getRashiAthipati()).get(girlRashi.getRashiAthipati());
-		GrahaRelation girlToBoyGrahaRelation = rashiAthipatiDetailsCache.get(girlRashi.getRashiAthipati()).get(boyRashi.getRashiAthipati());
-
-		if (boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND)) {
+		if (boyRashi.equals(girlRashi)) {
 			matchResult = MatchResult.UTTAMA;
-		}
-		if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.EQUAL)) || (boyToGirlGrahaRelation.equals(GrahaRelation.EQUAL) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
-			matchResult = MatchResult.UTTAMA;
-		}
-		if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.ENEMY)) || (boyToGirlGrahaRelation.equals(GrahaRelation.ENEMY) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
-			matchResult = MatchResult.MADHYAMA;
-		}
+		} else {
+			GrahaRelation boyToGirlGrahaRelation = rashiAthipatiDetailsCache.get(boyRashi.getRashiAthipati()).get(girlRashi.getRashiAthipati());
+			GrahaRelation girlToBoyGrahaRelation = rashiAthipatiDetailsCache.get(girlRashi.getRashiAthipati()).get(boyRashi.getRashiAthipati());
 
+			if (boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND)) {
+				matchResult = MatchResult.UTTAMA;
+			}
+			if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.EQUAL)) || (boyToGirlGrahaRelation.equals(GrahaRelation.EQUAL) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
+				matchResult = MatchResult.UTTAMA;
+			}
+			if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.ENEMY)) || (boyToGirlGrahaRelation.equals(GrahaRelation.ENEMY) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
+				matchResult = MatchResult.MADHYAMA;
+			}
+		}
 		return matchResult;
 	}
 
