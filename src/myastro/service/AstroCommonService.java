@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import myastro.constants.Nakshatra;
+import myastro.constants.NakshatraPadam;
 import myastro.constants.Rashi;
 
 public class AstroCommonService {
@@ -28,17 +29,39 @@ public class AstroCommonService {
 	public LinkedHashMap<String, String> getStarsInRashiWithPadamCache() {
 		return starsInRashiWithPadamCache;
 	}
-	
+
 	public Rashi getRashi(Nakshatra nakshatra, int padam) {
 		Rashi rashi = null;
-		String rashiName = getStarsInRashiWithPadamCache().get(nakshatra+"_"+padam);
-		for(Rashi rashiItr :Rashi.values()) {
-			if(rashiItr.name().equals(rashiName)) {
+		String rashiName = getStarsInRashiWithPadamCache().get(nakshatra + "#" + padam);
+		for (Rashi rashiItr : Rashi.values()) {
+			if (rashiItr.name().equals(rashiName)) {
 				rashi = rashiItr;
 				break;
 			}
 		}
 		return rashi;
+	}
+
+	public Nakshatra getNakshatra(String nakshatraName) {
+		Nakshatra nakshatra = null;
+		for (Nakshatra nakshatraItr : Nakshatra.values()) {
+			if (nakshatraItr.name().equals(nakshatraName)) {
+				nakshatra = nakshatraItr;
+				break;
+			}
+		}
+		return nakshatra;
+	}
+	
+	public NakshatraPadam getNakshatraPadam(Integer nakshatraPadamInt) {
+		NakshatraPadam nakshatraPadam = null;
+		for (NakshatraPadam nakshatraPadamItr : NakshatraPadam.values()) {
+			if (nakshatraPadamItr.getValue() == nakshatraPadamInt) {
+				nakshatraPadam = nakshatraPadamItr;
+				break;
+			}
+		}
+		return nakshatraPadam;
 	}
 
 	private LinkedHashMap<Rashi, ArrayList<Nakshatra>> getStarsInRashi() {
@@ -71,7 +94,7 @@ public class AstroCommonService {
 		ArrayList<String> starsPadamList = new ArrayList<String>();
 		for (Nakshatra nakshatra : Nakshatra.values()) {
 			for (int i = 1; i <= 4; i++) {
-				starsPadamList.add(nakshatra.name() + "_" + i);
+				starsPadamList.add(nakshatra.name() + "#" + i);
 			}
 		}
 

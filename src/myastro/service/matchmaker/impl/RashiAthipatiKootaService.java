@@ -26,22 +26,20 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 	@Override
 	public MatchResult checkKoota(Rashi boyRashi, Rashi girlRashi) {
 		MatchResult matchResult = MatchResult.ADHAMA;
-		if (boyRashi.equals(girlRashi)) {
-			matchResult = MatchResult.UTTAMA;
-		} else {
-			GrahaRelation boyToGirlGrahaRelation = rashiAthipatiDetailsCache.get(boyRashi.getRashiAthipati()).get(girlRashi.getRashiAthipati());
-			GrahaRelation girlToBoyGrahaRelation = rashiAthipatiDetailsCache.get(girlRashi.getRashiAthipati()).get(boyRashi.getRashiAthipati());
 
-			if (boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND)) {
-				matchResult = MatchResult.UTTAMA;
-			}
-			if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.EQUAL)) || (boyToGirlGrahaRelation.equals(GrahaRelation.EQUAL) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
-				matchResult = MatchResult.UTTAMA;
-			}
-			if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.ENEMY)) || (boyToGirlGrahaRelation.equals(GrahaRelation.ENEMY) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
-				matchResult = MatchResult.MADHYAMA;
-			}
+		GrahaRelation boyToGirlGrahaRelation = rashiAthipatiDetailsCache.get(boyRashi.getRashiAthipati()).get(girlRashi.getRashiAthipati());
+		GrahaRelation girlToBoyGrahaRelation = rashiAthipatiDetailsCache.get(girlRashi.getRashiAthipati()).get(boyRashi.getRashiAthipati());
+
+		if (boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND)) {
+			matchResult = MatchResult.UTTAMA;
 		}
+		if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.EQUAL)) || (boyToGirlGrahaRelation.equals(GrahaRelation.EQUAL) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
+			matchResult = MatchResult.UTTAMA;
+		}
+		if ((boyToGirlGrahaRelation.equals(GrahaRelation.FRIEND) && girlToBoyGrahaRelation.equals(GrahaRelation.ENEMY)) || (boyToGirlGrahaRelation.equals(GrahaRelation.ENEMY) && girlToBoyGrahaRelation.equals(GrahaRelation.FRIEND))) {
+			matchResult = MatchResult.MADHYAMA;
+		}
+
 		return matchResult;
 	}
 
@@ -71,6 +69,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 
 	private HashMap<Graha, GrahaRelation> getSuryaGrahaRelations() {
 		HashMap<Graha, GrahaRelation> grahaRelation = new HashMap<Graha, GrahaRelation>();
+		grahaRelation.put(Graha.SURYA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.CHANDRA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.MANGAL, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.BUDHA, GrahaRelation.EQUAL);
@@ -85,6 +84,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 	private HashMap<Graha, GrahaRelation> getChandraGrahaRelations() {
 		HashMap<Graha, GrahaRelation> grahaRelation = new HashMap<Graha, GrahaRelation>();
 		grahaRelation.put(Graha.SURYA, GrahaRelation.FRIEND);
+		grahaRelation.put(Graha.CHANDRA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.MANGAL, GrahaRelation.EQUAL);
 		grahaRelation.put(Graha.BUDHA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.BRIHASPATI, GrahaRelation.EQUAL);
@@ -99,6 +99,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 		HashMap<Graha, GrahaRelation> grahaRelation = new HashMap<Graha, GrahaRelation>();
 		grahaRelation.put(Graha.SURYA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.CHANDRA, GrahaRelation.FRIEND);
+		grahaRelation.put(Graha.MANGAL, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.BUDHA, GrahaRelation.ENEMY);
 		grahaRelation.put(Graha.BRIHASPATI, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.SHUKRA, GrahaRelation.EQUAL);
@@ -113,6 +114,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 		grahaRelation.put(Graha.SURYA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.CHANDRA, GrahaRelation.ENEMY);
 		grahaRelation.put(Graha.MANGAL, GrahaRelation.EQUAL);
+		grahaRelation.put(Graha.BUDHA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.BRIHASPATI, GrahaRelation.EQUAL);
 		grahaRelation.put(Graha.SHUKRA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.SHANI, GrahaRelation.EQUAL);
@@ -127,6 +129,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 		grahaRelation.put(Graha.CHANDRA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.MANGAL, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.BUDHA, GrahaRelation.ENEMY);
+		grahaRelation.put(Graha.BRIHASPATI, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.SHUKRA, GrahaRelation.ENEMY);
 		grahaRelation.put(Graha.SHANI, GrahaRelation.EQUAL);
 		grahaRelation.put(Graha.RAHU, GrahaRelation.EQUAL);
@@ -141,6 +144,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 		grahaRelation.put(Graha.MANGAL, GrahaRelation.EQUAL);
 		grahaRelation.put(Graha.BUDHA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.BRIHASPATI, GrahaRelation.EQUAL);
+		grahaRelation.put(Graha.SHUKRA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.SHANI, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.RAHU, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.KETU, GrahaRelation.FRIEND);
@@ -155,6 +159,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 		grahaRelation.put(Graha.BUDHA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.BRIHASPATI, GrahaRelation.EQUAL);
 		grahaRelation.put(Graha.SHUKRA, GrahaRelation.FRIEND);
+		grahaRelation.put(Graha.SHANI, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.RAHU, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.KETU, GrahaRelation.FRIEND);
 		return grahaRelation;
@@ -169,6 +174,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 		grahaRelation.put(Graha.BRIHASPATI, GrahaRelation.EQUAL);
 		grahaRelation.put(Graha.SHUKRA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.SHANI, GrahaRelation.FRIEND);
+		grahaRelation.put(Graha.RAHU, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.KETU, GrahaRelation.FRIEND);
 		return grahaRelation;
 	}
@@ -183,6 +189,7 @@ public class RashiAthipatiKootaService implements IRashiKootaService {
 		grahaRelation.put(Graha.SHUKRA, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.SHANI, GrahaRelation.FRIEND);
 		grahaRelation.put(Graha.RAHU, GrahaRelation.FRIEND);
+		grahaRelation.put(Graha.KETU, GrahaRelation.FRIEND);
 		return grahaRelation;
 	}
 
