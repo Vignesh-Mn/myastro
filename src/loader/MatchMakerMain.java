@@ -34,8 +34,6 @@ public class MatchMakerMain {
 			totalMatch += result.getValue().getValue();
 		}
 		System.out.println("Total Score :- " + totalMatch);
-		
-		System.out.println("Total Score 1324:- " + totalMatch);
 
 	}
 
