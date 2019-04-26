@@ -1,4 +1,6 @@
-
+/**
+ * 
+ */
 package myastro.constants;
 public enum Rashi {
 
