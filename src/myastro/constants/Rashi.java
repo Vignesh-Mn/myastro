@@ -1,7 +1,8 @@
 /**
- * 
+ * Test text
  */
 package myastro.constants;
+
 public enum Rashi {
 
 	MESA(Graha.MANGAL),
