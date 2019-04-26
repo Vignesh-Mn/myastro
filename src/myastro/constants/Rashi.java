@@ -1,7 +1,8 @@
 /**
- * 
+ * Constants to hold Rashi's
  */
 package myastro.constants;
+
 public enum Rashi {
 
 	MESA(Graha.MANGAL),
@@ -37,7 +38,7 @@ public enum Rashi {
 	public Graha getRashiAthipati() {
 		return rashiAthipati;
 	}
-	
+
 	public String toDetailString() {
 		StringBuilder info = new StringBuilder();
 		info.append(getRashiAthipati() + "\n");
